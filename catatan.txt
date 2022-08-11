@@ -1,0 +1,78 @@
+- user berelasi dengan group, group dengan perms
+- query menampilkan list module :
+SELECT DISTINCT x.modul_id, z.label, z.modul_icon, z.modul_url, z.modul_urutan, z.modul_kategori 
+FROM (SELECT * FROM aauth_perms) x, aauth_perm_to_group y, aauth_modules z 
+WHERE x.id = y.perm_id AND y.group_id = ".$group_id."  AND x.modul_id = z.id ORDER BY z.modul_urutan ASC
+
+- Halaman CPanel hanya cek session
+- Group Management (CRUD)
+- Module Management (CRUD) - ketika create module, secara bersamaan create perm untuk module dashboardnya.
+- Permission Management (CRUD)
+- User to Group (Update)
+- User logs (READ)
+- Loket
+- E-Kinerja
+
+
+Daftar Modul :
+- Sys Admin
+- Loket [Done]
+- Kepegawaian
+  - Dashboard
+  - Pegawai
+     1. tambah kolom golongan, nrk, gelar depan, gelar belakang
+  - Master Data
+    - Bagian
+    - Agama
+    - Jabatan
+    - Pendidikan
+    - Status Kawin
+    - Rumpun Jabatan
+- E-Kinerja
+  - Dashboard
+  - Master Data
+    - Master SKP
+    - Waktu Kerja (tambah kolom menit_per_hari)
+    - Penyerapan
+    - Gaji [id, pendidikan, masa_kerja, nominal_gaji]
+  - SKP Tahunan
+  - Input Aktifitas
+  - Capaian Kinerja
+    * jh = jumlah hari kerja dalam sebulan (dalam menit)
+    * bm = batas maksimal waktu efektif pegawai (jh - menit izin/alfa/sakit)
+    * tc = total capaian pegawai
+    * nilai aktifitas = MIN[tc,bm]/jh * 100%
+    * nilai aktifitas fix = nilai aktifitas - persen pengurangan izin/alfa/sakit
+  - Validasi SKP Tahunan
+  - Validasi Kinerja
+  - Prestasi Kerja
+  - Absensi
+  - Gaji Pegawai
+  - Tunjangan Pegawai
+- E-Cuti
+  - 
+- Gudang Umum
+- Perencanaan
+- Farmasi
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+PRESTASI PEGAWAI (Modul Ekinerja)
+
+Total poin aktifitas = total capaian
+total_poin_prilaku
+total_penambah (baru) = cuti/bersalin
+total_capaian_efektif (baru) = total_poin_aktifitas + total_penambah
+total_jam_kerja (baru) = menit kerja per bulan
+total_pengurang (baru) = izin + sakit + alfa + terlambat + pulang cepat
+total_batas_maksimal_efektif (baru) = total_jam_kerja - total_pengurang
+poin_capaian (baru) = MIN[total_capaian_efektif,total_batas_maksimal_efektif]
+total_persen_capaian = (poin_capaian/total_jam_kerja)*100%
+persen_capaian70 = total_persen_capaian * 70%
+persen_pengurang (baru) = izin*2% + sakit*1% + alfa*5%
+persen_serapan (baru) = dari table serapan
+total_capaian_akhir = persen_capaian70 + total_poin_prilaku + persen_serapan - persen_pengurang
+sync_by
+sync_date
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
