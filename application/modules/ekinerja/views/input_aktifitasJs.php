@@ -342,7 +342,7 @@ function deleteAktifitas(aktifitas_id) {
 
 function batas_input(selectedDate) {
     var peg = <?php echo $this->data['pegawai']->id_pegawai; ?>;
-    console.log("id pegawai adalah "+peg);
+    // console.log("id pegawai adalah "+peg);
 
     //current date
     var d = new Date();
@@ -350,7 +350,7 @@ function batas_input(selectedDate) {
     var currMonth = d.getMonth() + 1; //5
     var currYear = d.getFullYear(); //2020
     var dd = d.getTime();
-    console.log("Current d " + d); //24-5-2020
+    // console.log("Current d " + d); //24-5-2020
 
     //selected date
     var sd = new Date(selectedDate);
@@ -358,29 +358,46 @@ function batas_input(selectedDate) {
     var sMonth = sd.getMonth() + 1; //5
     var sYear = sd.getFullYear(); //2020
     var sdd = sd.getTime();
-    console.log("selected sd " + sd);
+    // console.log("selected sd " + sd);
 
 
     if (sMonth < currMonth) {
         // tutup date
         var td = new Date(selectedDate);
-        var tDate = '5'; //24
+        var tDate = '6'; //24
         var tMonth = d.getMonth() + 1; //5
         var tYear = td.getFullYear(); //2020
         var tutupbl = tMonth + "-" + tDate + "-" + tYear + " 00:00:00";
         var tutupbl1 = new Date(tutupbl);
-        console.log("Tutup ekin bulan lalu adalah " + tutupbl1);
-        $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+        // console.log("Tutup ekin bulan lalu adalah " + tutupbl1);
+        if (sdd < tutupbl1.getTime() && tutupbl1.getTime() < dd) {
+            $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+
+        } else {
+            $('#tools-box').html(
+                '<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#inputAktifitasModal" id="btnInputAktifitas"><i class="fa fa-plus"></i> Tambah Aktifitas</button>'
+            );
+        }
 
     } else {
         var td = new Date(selectedDate);
-        var tDate = '5'; //24
+        var tDate = '6'; //24
         var tMonth = d.getMonth() + 2; //5
         var tYear = td.getFullYear(); //2020
         var tutupbd = tMonth + "-" + tDate + "-" + tYear + " 00:00:00";
         var tutupbd1 = new Date(tutupbd);
-        console.log("Tutup ekin bulan depan adalah " + tutupbd1);
-        $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+        // console.log("Tutup ekin bulan depan adalah " + tutupbd1);
+        if (sdd < tutupbd1.getTime() && tutupbd1.getTime() < dd) {
+            $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+
+        } if (sdd > dd) {
+            $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+        } else {
+             $('#tools-box').html(
+                '<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#inputAktifitasModal" id="btnInputAktifitas"><i class="fa fa-plus"></i> Tambah Aktifitas</button>'
+            );
+        }
+
 
     }
 
@@ -388,7 +405,7 @@ function batas_input(selectedDate) {
         $('#tools-box').html(
             '<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#inputAktifitasModal" id="btnInputAktifitas"><i class="fa fa-plus"></i> Tambah Aktifitas</button>'
         );
-        console.log("user "+peg+" diizinkan input aktifitas");
+        // console.log("user "+peg+" diizinkan input aktifitas");
     }
 
 }
