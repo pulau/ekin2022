@@ -135,7 +135,7 @@ class Pegawai_model extends CI_Model {
     public function list_pjcuti(){
         $this->db->from('m_pegawai');
         $this->db->where('is_active',1);
-	$this->db->order_by('nama_pegawai','ASC');
+	    $this->db->order_by('nama_pegawai','ASC');
         $query = $this->db->get();
         return $query->result();
     }

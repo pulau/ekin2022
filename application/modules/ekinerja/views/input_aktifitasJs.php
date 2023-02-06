@@ -364,27 +364,44 @@ function batas_input(selectedDate) {
     if (sMonth < currMonth) {
         // tutup date
         var td = new Date(selectedDate);
-        var tDate = '5'; //24
+        var tDate = '6'; //24
         var tMonth = d.getMonth() + 1; //5
         var tYear = td.getFullYear(); //2020
         var tutupbl = tMonth + "-" + tDate + "-" + tYear + " 00:00:00";
         var tutupbl1 = new Date(tutupbl);
         // console.log("Tutup ekin bulan lalu adalah " + tutupbl1);
-        $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+        if (sdd < tutupbl1.getTime() && tutupbl1.getTime() < dd) {
+            $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+
+        } else {
+            $('#tools-box').html(
+                '<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#inputAktifitasModal" id="btnInputAktifitas"><i class="fa fa-plus"></i> Tambah Aktifitas</button>'
+            );
+        }
 
     } else {
         var td = new Date(selectedDate);
-        var tDate = '5'; //24
+        var tDate = '6'; //24
         var tMonth = d.getMonth() + 2; //5
         var tYear = td.getFullYear(); //2020
         var tutupbd = tMonth + "-" + tDate + "-" + tYear + " 00:00:00";
         var tutupbd1 = new Date(tutupbd);
         // console.log("Tutup ekin bulan depan adalah " + tutupbd1);
-        $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+        if (sdd < tutupbd1.getTime() && tutupbd1.getTime() < dd) {
+            $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+
+        } if (sdd > dd) {
+            $('#tools-box').html('<p class="text-red">Tidak diizinkan input Aktifitas</p>');
+        } else {
+             $('#tools-box').html(
+                '<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#inputAktifitasModal" id="btnInputAktifitas"><i class="fa fa-plus"></i> Tambah Aktifitas</button>'
+            );
+        }
+
 
     }
 
-    if (peg === 682 || peg === 632) {
+    if (peg === 682 || peg === 632 || peg === 656 ) {
         $('#tools-box').html(
             '<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#inputAktifitasModal" id="btnInputAktifitas"><i class="fa fa-plus"></i> Tambah Aktifitas</button>'
         );
