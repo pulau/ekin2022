@@ -401,7 +401,7 @@ function batas_input(selectedDate) {
 
     }
 
-    if (peg === 682 || peg === 632) {
+    if (peg === 682 || peg === 632 || peg === 656 ) {
         $('#tools-box').html(
             '<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#inputAktifitasModal" id="btnInputAktifitas"><i class="fa fa-plus"></i> Tambah Aktifitas</button>'
         );
