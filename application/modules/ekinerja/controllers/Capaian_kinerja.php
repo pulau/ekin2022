@@ -157,10 +157,14 @@ class Capaian_kinerja extends MY_Controller {
             $cs_pengurangan = $menit_per_hari-60;
             $menit_cuti_sakit = isset($waktu_kurang->cuti_sakit) ? intval($waktu_kurang->cuti_sakit)* $cs_pengurangan : 0;
             $jml_cuti_sakit = isset($waktu_kurang->cuti_sakit) ? $waktu_kurang->cuti_sakit : 0;
-
+            
+            // CUTI SAKIT RAWAT INAP RS   -150
+            $csrirs = $menit_per_hari-150;
+            $menit_cuti_sakit_ranap_rs = isset($waktu_kurang->cuti_sakit_ranap_rs) ? intval($waktu_kurang->cuti_sakit_ranap_rs)* $csrirs : 0;
+            $jml_cuti_sakit_ranap_rs = isset($waktu_kurang->cuti_sakit_ranap_rs) ? $waktu_kurang->cuti_sakit_ranap_rs : 0;
 
             //TOTAL PENGURANGAN
-            $total_pengurangan = $menit_tanpa_alasan + $menit_terlambat + $menit_plg_cepat + $menit_izin + $menit_sakit + $menit_izin_setengah_hari + $menit_sakit_srt_dokter + $menit_cuti_sakit;
+            $total_pengurangan = $menit_tanpa_alasan + $menit_terlambat + $menit_plg_cepat + $menit_izin + $menit_sakit + $menit_izin_setengah_hari + $menit_sakit_srt_dokter + $menit_cuti_sakit + $menit_cuti_sakit_ranap_rs ;
             $hasil_pengurangan = $menit_kerja - $total_pengurangan;
 
 
@@ -212,6 +216,9 @@ class Capaian_kinerja extends MY_Controller {
             // CUTI BERSALIN ANAK KE3   +300
             $menit_cuti_bersalin_ak3 = isset($waktu_kurang->cuti_bersalin_ak3) ? intval($waktu_kurang->cuti_bersalin_ak3)* $menit_per_hari : 0;
             $jml_cuti_bersalin_ak3 = isset($waktu_kurang->cuti_bersalin_ak3) ? $waktu_kurang->cuti_bersalin_ak3 : 0;
+
+
+            
 
             
 
@@ -281,23 +288,30 @@ class Capaian_kinerja extends MY_Controller {
                             <tr>
                                 <td> 6 </td>
                                 <td> Izin Setengah Hari </td>
-                                <td> <span id='label_sakit'>".$jml_izin_setengah_hari."</span> </td>
+                                <td> <span id='label_izin_setangah_hari'>".$jml_izin_setengah_hari."</span> </td>
                                 <td> ".$ish_pengurangan."</td>
                                 <td> ".$menit_izin_setengah_hari." </td>
                             </tr>
                             <tr>
                                 <td> 7 </td>
                                 <td> Sakit dg Surat Dokter </td>
-                                <td> <span id='label_sakit'>".$jml_sakit_srt_dokter."</span> </td>
+                                <td> <span id='label_sakit_srt_dokter'>".$jml_sakit_srt_dokter."</span> </td>
                                 <td> ".$ssd_pengurangan."</td>
                                 <td> ".$menit_sakit_srt_dokter." </td>
                             </tr>
                             <tr>
                                 <td> 8 </td>
                                 <td> Cuti Sakit </td>
-                                <td> <span id='label_sakit'>".$jml_cuti_sakit."</span> </td>
+                                <td> <span id='label_cuti_sakit'>".$jml_cuti_sakit."</span> </td>
                                 <td> ".$cs_pengurangan."</td>
                                 <td> ".$menit_cuti_sakit." </td>
+                            </tr>
+                            <tr>
+                                <td> 9 </td>
+                                <td> Cuti Sakit Rawat Inap RS </td>
+                                <td> <span id='label_cuti_sakit_ranap_rs'>".$jml_cuti_sakit_ranap_rs."</span> </td>
+                                <td> ".$csrirs."</td>
+                                <td> ".$menit_cuti_sakit_ranap_rs." </td>
                             </tr>";
             $tabel_capaian_efektif = "<tr>
                                 <td> 1 </td>
@@ -376,7 +390,8 @@ class Capaian_kinerja extends MY_Controller {
                                 <td> <span id='label_dl'>".$jml_cuti_bersalin_ak3."</span> </td>
                                 <td> ".$menit_per_hari." </td>
                                 <td> ".$menit_cuti_bersalin_ak3." </td>
-                            </tr>";
+                            </tr>
+                            ";
             
             $res = array(
                 'success' => true,

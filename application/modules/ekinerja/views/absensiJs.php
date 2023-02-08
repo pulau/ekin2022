@@ -155,6 +155,7 @@ function editKehadiran(id_waktukurang, nip, nama_pegawai){
                     $('#dinas_luar_penuh').val(data.data.dinas_luar_penuh);
                     $('#cuti_sakit').val(data.data.cuti_sakit);
                     $('#cuti_bersalin_ak3').val(data.data.cuti_bersalin_ak3);
+                    $('#cuti_sakit_ranap_rs').val(data.data.cuti_sakit_ranap_rs);
                     $('#modalEditAbsensi').modal('toggle');
                 } else {
                     $('#notification_type').removeClass('alert alert-dismissable').addClass('alert alert-danger alert-dismissable');

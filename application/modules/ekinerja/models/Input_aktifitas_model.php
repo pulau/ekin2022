@@ -111,7 +111,7 @@ class Input_aktifitas_model extends CI_Model {
     public function list_skptahunan($nip){
         $current_year = date('Y');
         $this->db->from('v_skptahunan');
-        $this->db->where('tahun', $current_year - 1);
+        $this->db->where('tahun', $current_year);
         $this->db->where('nip', $nip);
         $this->db->where('is_validate', 1);
         $query = $this->db->get();

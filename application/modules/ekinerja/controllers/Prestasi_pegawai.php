@@ -213,7 +213,8 @@ class Prestasi_pegawai extends MY_Controller {
             $menit_tidak_terbaca = isset($waktu_kurang->tidak_terbaca) ? intval($waktu_kurang->tidak_terbaca)* $menit_per_hari : 0;
             $menit_dinas_luar_penuh = isset($waktu_kurang->dinas_luar_penuh) ? intval($waktu_kurang->dinas_luar_penuh)* $menit_per_hari : 0;
             $menit_cuti_bersalin_ak3 = isset($waktu_kurang->cuti_bersalin_ak3) ? intval($waktu_kurang->cuti_bersalin_ak3)* $menit_per_hari : 0;
-            $total_penambahan = $menit_cuti_alasan_penting + $menit_isoman + $menit_ranapc19 + $menit_cuti_tahunan + $menit_cuti_bersalin + $menit_cuti_besar + $menit_dinas_luar_akhir + $menit_dinas_luar_awal + $menit_tidak_terbaca + $menit_dinas_luar_penuh + $menit_cuti_bersalin_ak3;
+            $menit_cuti_sakit_ranap_rs = isset($waktu_kurang->cuti_sakit_ranap_rs) ? intval($waktu_kurang->cuti_sakit_ranap_rs)* $menit_per_hari : 0;
+            $total_penambahan = $menit_cuti_alasan_penting + $menit_isoman + $menit_ranapc19 + $menit_cuti_tahunan + $menit_cuti_bersalin + $menit_cuti_besar + $menit_dinas_luar_akhir + $menit_dinas_luar_awal + $menit_tidak_terbaca + $menit_dinas_luar_penuh + $menit_cuti_bersalin_ak3 + $menit_cuti_sakit_ranap_rs;
             $hasil_penambahan = $nilai_capaian + $total_penambahan;
             $poin_capaian = min($hasil_penambahan,$hasil_pengurangan);
 
