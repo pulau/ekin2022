@@ -249,6 +249,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <label>cuti_bersalin_ak3 <span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="cuti_bersalin_ak3" id="cuti_bersalin_ak3" value="0" onkeypress="return numbersOnly(event);">
                 </div>
+                <div class="form-group">
+                    <label>cuti_sakit_ranap_rs <span style="color: red">*</span></label>
+                    <input type="text" class="form-control" name="cuti_sakit_ranap_rs" id="cuti_sakit_ranap_rs" value="0" onkeypress="return numbersOnly(event);">
+                </div>
             <?php echo form_close(); ?>
         </div>
         <div class="modal-footer">

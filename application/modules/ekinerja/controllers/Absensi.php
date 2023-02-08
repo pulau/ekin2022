@@ -84,6 +84,7 @@ class Absensi extends MY_Controller {
             $row[] = $kehadiran->dinas_luar_penuh;
             $row[] = $kehadiran->cuti_sakit;
             $row[] = $kehadiran->cuti_bersalin_ak3;
+            $row[] = $kehadiran->cuti_sakit_ranap_rs;
             //add html for action
             $row[] = '<button type="button" class="btn btn-social-icon btn-info" title="Edit" onclick="editKehadiran('."'".$kehadiran->id_waktukurang."',"."'".$kehadiran->nip."',"."'".$kehadiran->nama_pegawai."'".')"><i class="fa fa-edit"></i></button>';
                       //'<a class="btn btn-icon-only red" title="Hapus" onclick="hapusKehadiran('."'".$kehadiran->id_waktukurang."'".')"><i class="glyphicon glyphicon-trash"></i></a>';
@@ -185,6 +186,8 @@ class Absensi extends MY_Controller {
                         $dinas_luar_penuh = $worksheet[$i]['19'];
                         $cuti_sakit = $worksheet[$i]['20'];
                         $cuti_bersalin_ak3 = $worksheet[$i]['21'];
+                        $cuti_sakit_ranap_rs = $worksheet[$i]['22'];
+                        
 
                         $data_kehadiran = array(
                             'id_pegawai' => $id_pegawai,
@@ -207,7 +210,8 @@ class Absensi extends MY_Controller {
                             'tidak_terbaca' => $tidak_terbaca,
                             'dinas_luar_penuh' => $dinas_luar_penuh,
                             'cuti_sakit' => $cuti_sakit,
-                            'cuti_bersalin_ak3' => $cuti_bersalin_ak3
+                            'cuti_bersalin_ak3' => $cuti_bersalin_ak3,
+                            'cuti_sakit_ranap_rs' => $cuti_sakit_ranap_rs
                         );
 
                         if(!empty($id_pegawai)){
@@ -297,6 +301,7 @@ class Absensi extends MY_Controller {
         $this->form_validation->set_rules('dinas_luar_penuh', 'dinas_luar_penuh', 'required|trim');
         $this->form_validation->set_rules('cuti_sakit', 'cuti_sakit', 'required|trim');
         $this->form_validation->set_rules('cuti_bersalin_ak3', 'cuti_bersalin_ak3', 'required|trim');
+        $this->form_validation->set_rules('cuti_sakit_ranap_rs', 'cuti sakit rawat inap RS', 'required|trim');
         
         if ($this->form_validation->run() == FALSE)  {
             $error = validation_errors();
@@ -335,6 +340,7 @@ class Absensi extends MY_Controller {
             $dinas_luar_penuh = $this->input->post('dinas_luar_penuh', TRUE);
             $cuti_sakit = $this->input->post('cuti_sakit', TRUE);
             $cuti_bersalin_ak3 = $this->input->post('cuti_bersalin_ak3', TRUE);
+            $cuti_sakit_ranap_rs = $this->input->post('cuti_sakit_ranap_rs', TRUE);
             
             $data_kehadiran = array(
                 'tanpa_alasan' => $absent,
@@ -355,7 +361,8 @@ class Absensi extends MY_Controller {
                 'tidak_terbaca' => $tidak_terbaca,
                 'dinas_luar_penuh' => $dinas_luar_penuh,
                 'cuti_sakit' => $cuti_sakit,
-                'cuti_bersalin_ak3' => $cuti_bersalin_ak3
+                'cuti_bersalin_ak3' => $cuti_bersalin_ak3,
+                'cuti_sakit_ranap_rs' => $cuti_sakit_ranap_rs
             );
          
             $ins = $this->Absensi_model->update_kehadiran($data_kehadiran, $id_waktukurang);

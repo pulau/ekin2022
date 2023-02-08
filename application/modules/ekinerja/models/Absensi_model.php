@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Absensi_model extends CI_Model {
-    var $column = array('id_waktukurang', 'id_pegawai', 'bulan', 'tanpa_alasan', 'terlambat_menit', 'pulang_cepat_menit', 'izin', 'sakit', 'cuti_alasan_penting', 'izin_setengah_hari', 'covid', 'ranapc19', 'cuti_tahunan', 'sakit_srt_dokter', 'cuti_bersalin', 'cuti_besar', 'dinas_luar_akhir', 'dinas_luar_awal', 'tidak_terbaca', 'dinas_luar_penuh', 'cuti_sakit', 'cuti_bersalin_ak3');
+    var $column = array('id_waktukurang', 'id_pegawai', 'bulan', 'tanpa_alasan', 'terlambat_menit', 'pulang_cepat_menit', 'izin', 'sakit', 'cuti_alasan_penting', 'izin_setengah_hari', 'covid', 'ranapc19', 'cuti_tahunan', 'sakit_srt_dokter', 'cuti_bersalin', 'cuti_besar', 'dinas_luar_akhir', 'dinas_luar_awal', 'tidak_terbaca', 'dinas_luar_penuh', 'cuti_sakit', 'cuti_bersalin_ak3', 'cuti_sakit_ranap_rs');
     var $order = array('id_waktukurang' => 'DESC');
     
     public function __construct() {
